@@ -1,67 +1,552 @@
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" href="/_next/static/media/569ce4b8f30dc480-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="preload" href="/_next/static/media/93f479601ee12b01-s.p.woff2" as="font" crossorigin="" type="font/woff2" />
-    <link rel="stylesheet" href="/_next/static/css/a79e44d2b261343c.css" data-precedence="next" />
-    <link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-df70cda71feca323.js" />
-    <script src="/_next/static/chunks/4bd1b696-61250c256293e539.js" async=""></script>
-    <script src="/_next/static/chunks/684-a9223918c57ded79.js" async=""></script>
-    <script src="/_next/static/chunks/main-app-d9794b1200c643e4.js" async=""></script>
-    <script src="/_next/static/chunks/96-1f63bfebae71b7bc.js" async=""></script>
-    <script src="/_next/static/chunks/app/page-7f69a0b6a03e3d05.js" async=""></script>
-    <meta name="next-size-adjust" content="" />
-    <title>Binary Options Signals</title>
-    <meta name="description" content="Developed by @keyskillz" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="256x256" />
-    <script>
-        document.querySelectorAll('body link[rel="icon"], body link[rel="apple-touch-icon"]').forEach(el => document.head.appendChild(el))
-    </script>
-    <script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=2.0, user-scalable=no">
+  <title>TWIN's PREMIUM BOT</title>
+  <style>
+        body {  
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);  
+      color: #fff;  
+      font-family: 'Segoe UI', sans-serif;  
+      text-align: center;  
+      padding: 50px;  
+    }  .animated-box {  
+  display: inline-block;  
+  padding: 30px 50px;  
+  border-radius: 20px;  
+  background: #1f1c2c;  
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);  
+  position: relative;  
+  overflow: hidden;  
+  animation: glowPulse 3s ease-in-out infinite;  
+}  
+
+.animated-box::before {  
+  content: '';  
+  position: absolute;  
+  top: -50%;  
+  left: -50%;  
+  width: 200%;  
+  height: 200%;  
+  background: conic-gradient(from 0deg, #ff00cc, #3333ff, #00f2ff, #ff00cc);  
+  animation: rotate 5s linear infinite;  
+  z-index: 0;  
+}  
+
+.animated-box::after {  
+  content: '';  
+  position: absolute;  
+  top: 5px;  
+  left: 5px;  
+  right: 5px;  
+  bottom: 5px;  
+  background: #1f1c2c;  
+  border-radius: 15px;  
+  z-index: 1;  
+}  
+
+.animated-box h1 {  
+  position: relative;  
+  z-index: 2;  
+  font-size: 28px;  
+  letter-spacing: 2px;  
+  background: linear-gradient(to right, #ff00cc, #00f2ff);  
+  -webkit-background-clip: text;  
+  -webkit-text-fill-color: transparent;  
+}
+
+.toggle-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 30px 0;
+}
+
+.toggle-pair {
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 280px;
+background: #1e1e2f;
+border-radius: 12px;
+padding: 12px 20px;
+margin: 10px 0;
+box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+color: #fff;
+font-weight: bold;
+font-size: 16px;
+}
+
+.switch {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 26px;
+}
+
+.switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+background: #ccc;
+border-radius: 34px;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+transition: 0.4s;
+box-shadow: 0 0 10px rgba(255, 0, 204, 0.2);
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 20px;
+width: 20px;
+left: 3px;
+bottom: 3px;
+background: white;
+transition: 0.4s;
+border-radius: 50%;
+}
+
+input:checked + .slider {
+background: linear-gradient(45deg, #00f2ff, #ff00cc);
+box-shadow: 0 0 20px #00f2ff;
+}
+
+input:checked + .slider:before {
+transform: translateX(24px);
+}
+
+#pair-selection {  
+  background: #1e1e2f;  
+  color: #fff;  
+  padding: 10px;  
+  border-radius: 10px;  
+  border: 2px solid #00f2ff;  
+  font-size: 16px;  
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.5);  
+  outline: none;  
+  max-width: 90%;  
+}  
+
+#pair-selection option {  
+  background-color: #1e1e2f;  
+  color: #fff;  
+  padding: 5px;  
+}  
+
+#pair-selection:focus {  
+  border-color: #ff00cc;  
+  box-shadow: 0 0 15px rgba(255, 0, 204, 0.5);  
+}  
+
+#generate-btn {  
+  position: relative;  
+  display: inline-block;  
+  margin: 20px auto;  
+  padding: 15px 35px;  
+  color: #fff;  
+  font-size: 18px;  
+  text-transform: uppercase;  
+  letter-spacing: 1px;  
+  background: #1e1e2f;  
+  border: none;  
+  border-radius: 50px;  
+  cursor: pointer;  
+  overflow: hidden;  
+  z-index: 2;  
+}  
+
+#generate-btn::before {  
+  content: "";  
+  position: absolute;  
+  top: -2px;  
+  left: -2px;  
+  right: -2px;  
+  bottom: -2px;  
+  background: linear-gradient(45deg, #ff00cc, #00f2ff, #3333ff, #ff00cc);  
+  background-size: 400%;  
+  z-index: -1;  
+  filter: blur(4px);  
+  border-radius: 50px;  
+  animation: borderMove 4s linear infinite;  
+}  
+
+#generate-btn:hover {  
+  background: #2d2d44;  
+  transition: 0.3s;  
+}  
+
+@keyframes rotate {  
+  0% { transform: rotate(0deg); }  
+  100% { transform: rotate(360deg); }  
+}  
+
+@keyframes glowPulse {  
+  0%, 100% {  
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);  
+  }  
+  50% {  
+    box-shadow: 0 0 50px rgba(0, 242, 255, 0.4);  
+  }  
+}  
+
+@keyframes borderMove {  
+  0% { background-position: 0% 50%; }  
+  100% { background-position: 100% 50%; }  
+}  
+
+.loader-line {  
+  display: none;  
+}  
+
+.loader-line.show {  
+  display: block;  
+}  
+
+.line {  
+  width: 100%;  
+  height: 4px;  
+  background: linear-gradient(90deg, #00f2ff, #ff00cc, #00f2ff);  
+  background-size: 300% 100%;  
+  animation: borderMove 2s linear infinite;  
+}  
+
+.copy-button {  
+  background: #333;  
+  color: #fff;  
+  padding: 10px 20px;  
+  border: none;  
+  border-radius: 8px;  
+  cursor: pointer;  
+}  
+
+.copy-button:hover {  
+  background: #555;  
+}
+      
+          body {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    
+..signal-text {
+  background-color: #111;           /* Dark background for contrast */
+  color: #00ff88;                   /* Neon green text */
+  border: 2px solid #00ff88;        /* Matching border */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #00ff88;     /* Glow effect */
+  text-align: left;
+  max-width: 300px;
+  margin: 0 auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+    .animated-box {
+      display: inline-block;
+      padding: 30px 50px;
+      border-radius: 20px;
+      background: #1f1c2c;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    .animated-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, #ff00cc, #3333ff, #00f2ff, #ff00cc);
+      animation: rotate 5s linear infinite;
+      z-index: 0;
+    }
+
+    .animated-box::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      background: #1f1c2c;
+      border-radius: 15px;
+      z-index: 1;
+    }
+
+    .animated-box h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 28px;
+      letter-spacing: 2px;
+      background: linear-gradient(to right, #ff00cc, #00f2ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.signal-text {
+  background-color: #111;
+  color: #ffffff;
+  border: 2px solid #b400ff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #b400ff, 0 0 40px #b400ff;
+  text-align: left;
+  max-width: 320px;
+  margin: 20px auto;
+  font-family: 'Courier New', Courier, monospace;
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px #b400ff, 0 0 20px #b400ff;
+  }
+  100% {
+    box-shadow: 0 0 25px #b400ff, 0 0 50px #b400ff;
+    
+  }
+
+    #generate-btn {
+      position: relative;
+      display: inline-block;
+      margin: 20px auto;
+      padding: 15px 35px;
+      color: #fff;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: #1e1e2f;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    #generate-btn::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff00cc, #00f2ff, #3333ff, #ff00cc);
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(4px);
+      border-radius: 50px;
+      animation: borderMove 4s linear infinite;
+    }
+
+    #generate-btn:hover {
+      background: #2d2d44;
+      transition: 0.3s;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 50px rgba(0, 242, 255, 0.4);
+      }
+    }
+
+    @keyframes borderMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .loader-line {
+      display: none;
+    }
+
+    .loader-line.show {
+      display: block;
+    }
+
+    .line {
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #00f2ff, #ff00cc, #00f2ff);
+      background-size: 300% 100%;
+      animation: borderMove 2s linear infinite;
+    }
+
+    .copy-button {
+      background: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .copy-button:hover {
+      background: #555;
+    }
+  </style>
 </head>
+<body>
 
-<body class="__variable_5cfdac __variable_9a8899 antialiased">
-    <div class="jsx-4225c15b3266b003 relative h-screen w-screen overflow-hidden">
-        <div class="jsx-4225c15b3266b003 absolute inset-0 overflow-hidden"></div>
-        <div style="background:linear-gradient(to right, gold, pink);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientAnimation 5s linear infinite" class="jsx-4225c15b3266b003 absolute top-10 w-full text-5xl font-bold text-center flex items-center justify-center"><img alt="Storm Icon" loading="lazy" width="40" height="40" decoding="async" data-nimg="1" class="ml-2" style="color:transparent" srcSet="/_next/image?url=%2FWeather.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2FWeather.png&amp;w=96&amp;q=75 2x"
-                src="/_next/image?url=%2FWeather.png&amp;w=96&amp;q=75" />STORM<img alt="Storm Icon" loading="lazy" width="40" height="40" decoding="async" data-nimg="1" class="mr-2" style="color:transparent" srcSet="/_next/image?url=%2FWeather.png&amp;w=48&amp;q=75 1x, /_next/image?url=%2FWeather.png&amp;w=96&amp;q=75 2x"
-                src="/_next/image?url=%2FWeather.png&amp;w=96&amp;q=75" /></div>
-        <div class="jsx-4225c15b3266b003 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 p-6 rounded-[2%] bg-gray-900/[0.9] backdrop-blur-sm w-80 flex flex-col items-center justify-center border border-cyan-500 shadow-lg shadow-cyan-500/50">
-            <h2 class="jsx-4225c15b3266b003 text-lg font-semibold mb-4 text-green-500 glow text-center animate-pulse">Live Signals</h2><input type="password" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm mb-4 text-center"
-                placeholder="Enter The Password" value="" /><button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-primary/90 h-10 px-4 py-2 w-full bg-gradient-to-r from-blue-500 to-purple-500 text-primary-foreground hover:opacity-80 transition-opacity text-center font-bold">Let&#x27;s Go</button></div>
-        <footer
-            class="jsx-4225c15b3266b003 absolute bottom-0 w-full text-center text-sm py-2 bg-gray-800 text-white flex items-center justify-center opacity-80"><img alt="Footer Icon" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" class="mr-2" style="color:transparent" srcSet="/_next/image?url=%2Fimg.png&amp;w=32&amp;q=75 1x, /_next/image?url=%2Fimg.png&amp;w=48&amp;q=75 2x" src="/_next/image?url=%2Fimg.png&amp;w=48&amp;q=75"
-            /><a href="https://t.me/TeleBinary" target="_blank" rel="noopener noreferrer" class="jsx-4225c15b3266b003 text-cyan-500 hover:underline">Developed By TeleBinary Team</a></footer>
-    </div>
-    <!--$-->
-    <!--/$-->
-    <!--$-->
-    <!--/$-->
-    <script src="/_next/static/chunks/webpack-df70cda71feca323.js" async=""></script>
-    <script>
-        (self.__next_f = self.__next_f || []).push([0])
-    </script>
-    <script>
-        self.__next_f.push([1, "1:\"$Sreact.fragment\"\n2:I[7555,[],\"\"]\n3:I[1295,[],\"\"]\n4:I[894,[],\"ClientPageRoot\"]\n5:I[7253,[\"96\",\"static/chunks/96-1f63bfebae71b7bc.js\",\"974\",\"static/chunks/app/page-7f69a0b6a03e3d05.js\"],\"default\"]\n8:I[9665,[],\"MetadataBoundary\"]\na:I[9665,[],\"OutletBoundary\"]\nd:I[4911,[],\"AsyncMetadataOutlet\"]\nf:I[9665,[],\"ViewportBoundary\"]\n11:I[6614,[],\"\"]\n:HL[\"/_next/static/media/569ce4b8f30dc480-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/media/93f479601ee12b01-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n:HL[\"/_next/static/css/a79e44d2b261343c.css\",\"style\"]\n"])
-    </script>
-    <script>
-        self.__next_f.push([1, "0:{\"P\":null,\"b\":\"57V2sujpyD_-bFbaGkWiR\",\"p\":\"\",\"c\":[\"\",\"\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/a79e44d2b261343c.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_5cfdac __variable_9a8899 antialiased\",\"children\":[\"$\",\"$L2\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L3\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}]}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$1\",\"c\",{\"children\":[[\"$\",\"$L4\",null,{\"Component\":\"$5\",\"searchParams\":{},\"params\":{},\"promises\":[\"$@6\",\"$@7\"]}],[\"$\",\"$L8\",null,{\"children\":\"$L9\"}],null,[\"$\",\"$La\",null,{\"children\":[\"$Lb\",\"$Lc\",[\"$\",\"$Ld\",null,{\"promise\":\"$@e\"}]]}]]}],{},null,false]},null,false],[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$1\",\"rvbq0jLol5b2cRv9UljgH\",{\"children\":[[\"$\",\"$Lf\",null,{\"children\":\"$L10\"}],[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\",\"content\":\"\"}]]}],null]}],false]],\"m\":\"$undefined\",\"G\":[\"$11\",\"$undefined\"],\"s\":false,\"S\":true}\n"])
-    </script>
-    <script>
-        self.__next_f.push([1, "12:\"$Sreact.suspense\"\n13:I[4911,[],\"AsyncMetadata\"]\n6:{}\n7:{}\n9:[\"$\",\"$12\",null,{\"fallback\":null,\"children\":[\"$\",\"$L13\",null,{\"promise\":\"$@14\"}]}]\n"])
-    </script>
-    <script>
-        self.__next_f.push([1, "c:null\n"])
-    </script>
-    <script>
-        self.__next_f.push([1, "10:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\nb:null\n"])
-    </script>
-    <script>
-        self.__next_f.push([1, "14:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"Binary Options Signals\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Developed by @keyskillz\"}],[\"$\",\"link\",\"2\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"256x256\"}]],\"error\":null,\"digest\":\"$undefined\"}\ne:{\"metadata\":\"$14:metadata\",\"error\":null,\"digest\":\"$undefined\"}\n"])
-    </script>
+  <div class="animated-box">
+    <h1>TWIN'S AI BOT</h1>
+  </div>
+
+  <!-- Startup Loader -->
+  <div id="startup-loader" class="startup-loader">
+    <div class="ring"></div>
+    <p></p>
+  </div>
+
+  <div class="container">
+    <h2>Artificial Intelligence</h2>
+    <p>Owner - @riyad_khano1</p>
+
+<div id="pair-toggle-list" class="toggle-container">
+  <div class="toggle-pair"><span>EURUSD-OTC</span><label class="switch"><input type="checkbox" value="EURUSD-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>GBPUSD-OTC</span><label class="switch"><input type="checkbox" value="GBPUSD-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>AUDCAD-OTC</span><label class="switch"><input type="checkbox" value="AUDCAD-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>USDJPY-OTC</span><label class="switch"><input type="checkbox" value="USDJPY-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>USDCAD-OTC</span><label class="switch"><input type="checkbox" value="USDCAD-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>BRLUSD-OTC</span><label class="switch"><input type="checkbox" value="BRLUSD-OTC" checked><span class="slider"></span></label></div>
+  <div class="toggle-pair"><span>USDNGN-OTC</span><label class="switch"><input type="checkbox" value="USDNGN-OTC" checked><span class="slider"></span></label></div>
+</div>
+
+    <br>
+    <button id="generate-btn" onclick="generateSignal()">Get Signal</button>
+
+<div id="signals" style="display: none;">
+  <button class="copy-button" onclick="copySignals()">Copy to clipboard</button>
+  <h3></h3>
+  <p id="success-message" style="display: none;"><strong>Generated Successful...</strong></p>
+  <p id="selected-pairs-text" style="display: none;">Your selected pairs: <span id="selected-pairs"></span></p>
+  <p>UTC+6:00 ✓</p>
+  <div id="signal-list"></div>
+  <p><a href="https://t.me/Twins_Trading_Community1" target="_blank">Join our channel</a></p>
+  <p style="color: #444; font-size: 13px; margin-top: 5px;">2025 All Rights Reserved</p>
+</div>
+
+    <div id="cooldown-message"></div>
+  </div>
+
+  <div class="loader-line" id="loader-line">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+<script>
+let signalTimeout;
+
+function generateSignal() {
+  const pairs = Array.from(document.querySelectorAll('#pair-toggle-list input[type="checkbox"]:checked')).map(cb => cb.value);
+
+  if (pairs.length === 0) {
+    alert("Please select at least one pair.");
+    return;
+  }
+
+  // Disable the button after first click
+  document.getElementById('generate-btn').disabled = true;
+  document.getElementById('generate-btn').style.opacity = '0.5';
+  document.getElementById('generate-btn').style.cursor = 'not-allowed';
+  document.getElementById('generate-btn').innerText = 'Signal Running...';
+
+  clearTimeout(signalTimeout);
+
+  const directions = ["NEXT CANDLE PUT🔻", "NEXT CANDLE CALL🔺"];
+
+  function createAndShowSignal() {
+    document.getElementById('signal-list').innerHTML = '<div class="loader-animation"></div>';
+    document.getElementById('selected-pairs').innerText = '';
+
+    setTimeout(() => {
+      const now = new Date();
+      const randomPair = pairs[Math.floor(Math.random() * pairs.length)];
+      const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+
+      let hour = now.getHours().toString().padStart(2, '0');
+      let minute = (now.getMinutes() + 1).toString().padStart(2, '0');
+      let formattedTime = `${hour}:${minute}`;
+
+      const signalHTML = `
+        <div class="signal-text">
+          <strong>Pairs:</strong> ${randomPair}<br>
+          <strong>Time:</strong> ${formattedTime}<br>
+          <strong>Candle Type:</strong> CandleStick<br>
+          <strong>Signal:</strong> ${randomDirection}
+        </div>
+      `;
+
+      document.getElementById('signal-list').innerHTML = signalHTML;
+      document.getElementById('selected-pairs').innerText = pairs.join(', ');
+      document.getElementById('signals').style.display = 'block';
+      document.getElementById('success-message').style.display = 'block';
+      document.getElementById('selected-pairs-text').style.display = 'block';
+      document.getElementById('cooldown-message').innerText = "LIVE SIGNAL UPDATED";
+
+      // Loop for next signal
+      const next = new Date();
+      next.setSeconds(0);
+      next.setMilliseconds(0);
+      next.setMinutes(now.getMinutes() + 1);
+      const waitTime = next.getTime() - now.getTime();
+
+      signalTimeout = setTimeout(createAndShowSignal, waitTime);
+    }, 1000);
+  }
+
+  createAndShowSignal();
+  document.getElementById('cooldown-message').innerText = "LIVE SIGNAL MODE ACTIVE";
+}
+
+// Stop loop when page unloads
+window.onbeforeunload = () => clearTimeout(signalTimeout);
+
+
+function copySignals() {
+  const signalText = document.getElementById('signal-list').innerText;
+  const selectedPairs = document.getElementById('selected-pairs').innerText;
+  const fullText = `Generated Successful...\n\nYour selected pairs: ${selectedPairs}\nUTC+6:00 ✓\n\n${signalText}`;
+
+  const textArea = document.createElement('textarea');
+  textArea.value = fullText;
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+
+  alert("Signals copied to clipboard!");
+}
+
+  </script>
+
 </body>
-
 </html>
